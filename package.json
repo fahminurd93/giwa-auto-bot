@@ -1,0 +1,23 @@
+{
+  "name": "giwa-ops-kit",
+  "version": "1.1.6",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "deposit": "node src/deposit_eth.mjs",
+    "loop": "node src/loop_token_batch_parallel.mjs", 
+    "all": "node src/loop_token_batch_parallel.mjs",
+    "start": "node src/cli.mjs",
+    "send:eth": "node src/send_eth.mjs",
+    "targets": "node src/discover_targets.mjs"
+  },
+  "dependencies": {
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "log-update": "^5.0.1",
+    "solc": "^0.8.30",
+    "viem": "^2.21.40"
+  }
+}

@@ -1,0 +1,35 @@
+ini adalah skript push tx giwa
+
+cd giwa-push-v1
+
+npm i
+npm start
+------------------------
+pilih deposit ya/tidak
+Proses
+jika memilih ya (y)
+-bridge dari sepolia ke giwa
+-deploy token
+-send token ke 5 random address
+
+jika memilih tidak (N)
+-Deploy token
+-send token ke 5 random address
+
+------------------------------
+jumlah deposti bisa di sesuaikan di file .env
+edit bagian DEPOSIT_ETH=0.01 (bisa kamu ganti sesuai kebutuhan)
+
+------------------------
+
+masukkan daftar private keymu di
+data/keys.txt
+
+1 baris untuk 1 private key
+0x---
+0x---
+0x---
+
+-------------------------------
+
+semoga jepe

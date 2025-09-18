@@ -1,0 +1,13 @@
+import 'dotenv/config';
+import { defineChain, createPublicClient, createWalletClient, http } from 'viem';
+import { privateKeyToAccount } from 'viem/accounts';
+import { sepolia } from 'viem/chains';
+const RPC_TIMEOUT_MS=Number(process.env.RPC_TIMEOUT_MS||30000);
+const L1_RPC=process.env.L1_RPC||'https://rpc.sepolia.org';
+const L2_RPC=process.env.L2_RPC||'https://sepolia-rpc.giwa.io';
+export const giwaSepolia=defineChain({id:91342,name:'Giwa Sepolia',nativeCurrency:{name:'Sepolia Ether',symbol:'ETH',decimals:18},rpcUrls:{default:{http:[L2_RPC]}},contracts:{multicall3:{address:'0xcA11bde05977b3631167028862bE2a173976CA11'},disputeGameFactory:{[sepolia.id]:{address:'0x37347caB2afaa49B776372279143D71ad1f354F6'}},portal:{[sepolia.id]:{address:'0x956962C34687A954e611A83619ABaA37Ce6bC78A'}},l1StandardBridge:{[sepolia.id]:{address:'0x77b2ffc0F57598cAe1DB76cb398059cF5d10A7E7'}}},testnet:true});
+export const PRIVATE_KEY=process.env.TEST_PRIVATE_KEY||null;export const account=PRIVATE_KEY?privateKeyToAccount(PRIVATE_KEY):null;
+export const publicClientL1=createPublicClient({chain:sepolia,transport:http(L1_RPC,{timeout:RPC_TIMEOUT_MS}),batch:{multicall:true}});
+export const walletClientL1=PRIVATE_KEY?createWalletClient({account,chain:sepolia,transport:http(L1_RPC,{timeout:RPC_TIMEOUT_MS})}):null;
+export const publicClientL2=createPublicClient({chain:giwaSepolia,transport:http(L2_RPC,{timeout:RPC_TIMEOUT_MS}),batch:{multicall:true}});
+export const walletClientL2=PRIVATE_KEY?createWalletClient({account,chain:giwaSepolia,transport:http(L2_RPC,{timeout:RPC_TIMEOUT_MS})}):null;
